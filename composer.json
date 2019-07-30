@@ -1,0 +1,33 @@
+{
+    "name": "dem13n/nickname-changer",
+    "description": "Allow users to change nickname",
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dem13n",
+            "email": "idem13n@gmail.com"
+        }
+    ],
+    "require": {
+        "flarum/core": "^0.1.0-beta.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dem13n\\NickName\\Changer\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        },
+        "flarum-extension": {
+            "title": "NickName Changer",
+            "icon": {
+                "name": "fas fa-id-card",
+                "backgroundColor": "#FEC007",
+                "color": "#374046"
+            }
+        }
+    }
+}
