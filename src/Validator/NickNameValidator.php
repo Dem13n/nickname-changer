@@ -9,7 +9,7 @@ class NickNameValidator extends AbstractValidator
     protected $rules = [
         'nickname' => [
             'required',
-            'regex:/^[a-zA-Zа-яА-Я0-9\s]+$/ui',
+            'regex:/^([a-zA-Zа-яА-Я0-9]{2,}[\r\n\t\f\v ]{0,1})+$/iu',
             'unique:users,nickname',
             'min:3',
             'max:30',
