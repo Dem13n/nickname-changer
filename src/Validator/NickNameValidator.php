@@ -10,6 +10,7 @@ class NickNameValidator extends AbstractValidator
         'nickname' => [
             'regex:/^([a-zA-Zа-яА-Я0-9]{2,}[\r\n\t\f\v ]{0,1})+$/iu',
             'unique:users,nickname',
+            'unique:users,username',
             'min:3',
             'max:30',
         ],
