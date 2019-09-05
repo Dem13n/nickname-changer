@@ -22,3 +22,17 @@ php flarum cache:clear
 
 - [Packagist](https://packagist.org/packages/dem13n/nickname-changer)
 "# NickName Changer" 
+
+### Screenshots
+![NickName Changer](https://i.imgur.com/LVf5l6z.png)
+
+![NickName Changer](https://i.imgur.com/QrWCsJU.png)
+
+![NickName Changer](https://i.imgur.com/gnwGQru.png)
+
+![NickName Changer](https://i.imgur.com/Mp7Frdo.png)
+
+![NickName Changer](https://i.imgur.com/v9GFvYQ.png)
+
+![NickName Changer](https://i.imgur.com/abJvnF9.png)
+

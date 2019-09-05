@@ -6,21 +6,36 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\User\AssertPermissionTrait;
 use Flarum\User\Event\Saving;
 use Dem13n\NickName\Changer\Validator\NickNameValidator;
+use Flarum\Notification\NotificationSyncer;
+use Dem13n\NickName\Changer\Notification\AdminChangeNicknameBlueprint;
 
-class SaveUserNickName
+
+class SaveNickNameAndSendNotification
 {
     use AssertPermissionTrait;
 
     protected $validator;
+    protected $notifications;
 
-    public function __construct(NickNameValidator $validator)
+    public function __construct(NickNameValidator $validator, NotificationSyncer $notifications)
     {
         $this->validator = $validator;
+        $this->notifications = $notifications;
     }
 
     public function subscribe(Dispatcher $events)
     {
         $events->listen(Saving::class, [$this, 'saveNickName']);
+    }
+
+    public function sendNotification($actor, $user)
+    {
+        if ($actor->isAdmin() && $actor->id !== $user->id) {
+            $this->notifications->sync(
+                new AdminChangeNicknameBlueprint($user, $actor),
+                [$user]
+            );
+        }
     }
 
     public function saveNickName(Saving $event)
@@ -40,6 +55,7 @@ class SaveUserNickName
             $user->nickname = $attributes['nickname'];
             $this->validator->assertValid($user->getAttributes());
             $user->save();
+            $this->sendNotification($actor, $user);
         }
     }
 }

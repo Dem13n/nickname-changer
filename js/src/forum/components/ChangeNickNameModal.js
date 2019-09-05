@@ -5,8 +5,7 @@ export default class ChangeNickNameModal extends Modal {
 
   init() {
     super.init();
-    this.success = false;
-    this.nickname = m.prop('');
+    this.displayname = m.prop(app.session.user.displayName());
   }
 
   className() {
@@ -18,27 +17,16 @@ export default class ChangeNickNameModal extends Modal {
   }
 
   content() {
-    if (this.success) {
-      return (
-        <div className="Modal-body">
-          <div className="Form Form--centered">
-            <p className="Text--success">{app.translator.trans('dem13n.forum.nickname.nick')} <p className="Text--red">{this.nickname()}</p> {app.translator.trans('dem13n.forum.nickname.success')}</p>
-            <div className="Form-group">
-              <Button className="Button Button--primary Button--block" onclick={this.hide.bind(this)}>
-                {app.translator.trans('dem13n.forum.nickname.close')}
-              </Button>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     return (
       <div className="Modal-body">
         <div className="Form Form--centered">
           <div className="Form-group">
-            <input type="text" name="nickname" className="FormControl"
-              bidi={this.nickname}
+            <input
+              type="text"
+              autocomplete="off"
+              name="nickname"
+              className="FormControl"
+              bidi={this.displayname}
               disabled={this.loading} />
           </div>
           <div className="Form-group">
@@ -46,7 +34,7 @@ export default class ChangeNickNameModal extends Modal {
               className: 'Button Button--primary Button--block',
               type: 'submit',
               loading: this.loading,
-              children: app.translator.trans('dem13n.forum.nickname.done')
+              children: app.translator.trans('dem13n.forum.nickname.submit_button')
             })}
           </div>
         </div>
@@ -57,13 +45,20 @@ export default class ChangeNickNameModal extends Modal {
   onsubmit(e) {
     e.preventDefault();
 
+    if (this.displayname() === app.session.user.username() || (!this.displayname() && (app.session.user.displayName() === app.session.user.username()))) {
+      this.hide();
+      return;
+    }
+
     this.loading = true;
 
-    app.session.user.save({ nickname: this.nickname() }, {
+    app.session.user.save({ nickname: this.displayname() }, {
       errorHandler: this.onerror.bind(this),
     })
-      .then(() => this.success = true)
-      .catch(() => { })
-      .then(this.loaded.bind(this));
+      .then(this.hide.bind(this))
+      .catch(() => {
+        this.loading = false;
+        m.redraw();
+      });
   }
 }

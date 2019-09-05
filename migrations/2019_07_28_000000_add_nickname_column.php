@@ -9,5 +9,4 @@ return [
             $table->string('nickname', 30)->after('username');
         });
     }
-
 ];

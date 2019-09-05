@@ -5,7 +5,7 @@ namespace Dem13n\NickName\Changer\Listener;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Event\GetDisplayName;
 
-class ChangeUserDisplayNameAttribute
+class ChangeDisplayNameAttribute
 {
     public function subscribe(Dispatcher $events)
     {
