@@ -1,6 +1,6 @@
 # NickName Changer
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![CodeFactor](https://www.codefactor.io/repository/github/dem13n/nickname-changer/badge)](https://www.codefactor.io/repository/github/dem13n/nickname-changer)
 
 
 A [Flarum](http://flarum.org) extension. NickName Changer
