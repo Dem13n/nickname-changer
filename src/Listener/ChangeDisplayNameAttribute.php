@@ -3,7 +3,7 @@
 namespace Dem13n\NickName\Changer\Listener;
 
 use Illuminate\Contracts\Events\Dispatcher;
-use Flarum\Event\GetDisplayName;
+use Flarum\User\Event\GetDisplayName;
 
 class ChangeDisplayNameAttribute
 {

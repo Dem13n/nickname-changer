@@ -8,7 +8,7 @@ app.initializers.add('dem13n-nickname-changer', app => {
 
   app.extensionSettings['dem13n-nickname-changer'] = () => app.modal.show(new NicknameChangerSettings());
 
-  extend(PermissionGrid.prototype, 'replyItems', items => {
+  extend(PermissionGrid.prototype, 'moderateItems', items => {
     items.add('permanentChange', {
       icon: 'fas fa-id-badge',
       label: app.translator.trans('dem13n.admin.nickname.unlimited_nickname_change'),

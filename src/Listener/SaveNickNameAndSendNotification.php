@@ -30,7 +30,7 @@ class SaveNickNameAndSendNotification
 
     public function sendNotification($actor, $user)
     {
-        if ($actor->isAdmin() && $actor->id !== $user->id) {
+        if (($actor->isAdmin() || $actor->hasPermission('user.edit')) && $actor->id !== $user->id) {
             $this->notifications->sync(
                 new AdminChangeNicknameBlueprint($user, $actor),
                 [$user]
