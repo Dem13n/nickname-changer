@@ -1,6 +1,6 @@
 <?php
 
-namespace Dem13n\NickName\Changer\Validator;
+namespace Dem13n\NickName\Changer\Validators;
 
 use Flarum\Foundation\AbstractValidator;
 

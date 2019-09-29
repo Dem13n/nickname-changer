@@ -4,8 +4,6 @@ dem13n:
       head_title: Nickname
       new_nickname: Enter a new nickname
       change: Change Nickname
-      admin_change_nickname: "{username} changed your nickname to <strong>{actor}</strong>"
-      admin_delete_nickname: "{username} delete your nickname"
       submit_button: => core.ref.save_changes
   admin:
     nickname:

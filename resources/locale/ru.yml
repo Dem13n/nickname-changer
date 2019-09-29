@@ -4,8 +4,6 @@ dem13n:
       head_title: Никнейм
       new_nickname: Введите новый никнейм
       change: Изменить никнейм
-      admin_change_nickname: "{username} изменил ваш никнейм на <strong>{actor}</strong>"
-      admin_delete_nickname: "{username} удалил ваш никнейм"
       submit_button: => core.ref.save_changes
   admin:
     nickname:

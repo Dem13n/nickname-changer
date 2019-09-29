@@ -7,11 +7,8 @@ import Button from 'flarum/components/Button';
 import Model from 'flarum/Model';
 import User from 'flarum/models/User';
 import ChangeNickNameModal from './components/ChangeNickNameModal';
-import ChangeNickNameNotification from './components/ChangeNickNameNotification';
 
 app.initializers.add('dem13n-nickname-changer', () => {
-
-  app.notificationComponents.nicknameChange = ChangeNickNameNotification;
 
   User.prototype.nickname = Model.attribute('nickname');
 
