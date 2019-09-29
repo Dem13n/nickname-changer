@@ -8,7 +8,7 @@ class NickNameValidator extends AbstractValidator
 {
     protected $rules = [
         'nickname' => [
-            'regex:/^([a-zA-Zа-яА-Я0-9]{2,}[\r\n\t\f\v ]{0,1})+$/iu',
+            'regex:/^([[:alnum:]]{2,}[\r\n\t\f\v ]{0,1})+$/iu',
             'unique:users,nickname',
             'unique:users,username',
             'min:3',
