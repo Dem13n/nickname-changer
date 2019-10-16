@@ -9,8 +9,9 @@ class ChangeDisplayNameAttribute
 {
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(GetDisplayName::class, function ($app) {
-            return $app->user->nickname;
+        $events->listen(GetDisplayName::class, function ($user) {
+            $display_name = $user->user->findOrFail($user->user->id)->nickname;
+            return $display_name;
         });
     }
 }

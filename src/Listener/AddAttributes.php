@@ -19,17 +19,10 @@ class AddAttributes
 
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(Serializing::class, [$this, 'addUserNickNameAttribute']);
         $events->listen(Serializing::class, [$this, 'canPermanentNicknameChange']);
         $events->listen(Serializing::class, [$this, 'NicknameChangeSettings']);
     }
 
-    public function addUserNickNameAttribute(Serializing $event)
-    {
-        if ($event->isSerializer(UserSerializer::class)) {
-            $event->attributes['nickname'] = $event->model->nickname;
-        }
-    }
 
     public function canPermanentNicknameChange(Serializing $event)
     {

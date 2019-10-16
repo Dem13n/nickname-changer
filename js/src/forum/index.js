@@ -10,8 +10,6 @@ import ChangeNickNameModal from './components/ChangeNickNameModal';
 
 app.initializers.add('dem13n-nickname-changer', () => {
 
-  User.prototype.nickname = Model.attribute('nickname');
-
   extend(SettingsPage.prototype, 'accountItems', function (items) {
     this.displayname = m.prop(app.session.user.displayName());
     this.username = m.prop(app.session.user.username());
@@ -31,12 +29,12 @@ app.initializers.add('dem13n-nickname-changer', () => {
   });
 
   extend(EditUserModal.prototype, 'fields', function (items) {
-    items.add('nickname', (<div className="Form-group">
+    items.add('nickname', <div className="Form-group">
       <label>{app.translator.trans('dem13n.forum.nickname.head_title')}</label>
       <input className="FormControl"
         placeholder={extractText(app.translator.trans('dem13n.forum.nickname.new_nickname'))}
         bidi={this.displayname} />
-    </div>), 100);
+    </div>, 100);
   });
 
   extend(EditUserModal.prototype, 'data', function (data) {
