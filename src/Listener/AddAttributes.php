@@ -23,7 +23,6 @@ class AddAttributes
         $events->listen(Serializing::class, [$this, 'NicknameChangeSettings']);
     }
 
-
     public function canPermanentNicknameChange(Serializing $event)
     {
         if ($event->isSerializer(UserSerializer::class)) {
