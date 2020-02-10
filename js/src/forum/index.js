@@ -4,6 +4,8 @@ import SettingsPage from 'flarum/components/SettingsPage';
 import extractText from 'flarum/utils/extractText';
 import EditUserModal from 'flarum/components/EditUserModal';
 import Button from 'flarum/components/Button';
+import Model from 'flarum/Model';
+import User from 'flarum/models/User';
 import ChangeNickNameModal from './components/ChangeNickNameModal';
 
 app.initializers.add('dem13n-nickname-changer', () => {

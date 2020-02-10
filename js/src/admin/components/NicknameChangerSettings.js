@@ -8,6 +8,9 @@ export default class NicknameChangerSettings extends Modal {
   init() {
     super.init();
     this.NicknameChange = m.prop(app.data.settings.dem13n_nickname_change === '1');
+    this.regex = m.prop(app.data.settings.dem13n_nickname_regex);
+    this.min = m.prop(app.data.settings.dem13n_nickname_min_char);
+    this.max = m.prop(app.data.settings.dem13n_nickname_max_char);
   }
 
   className() {
@@ -29,6 +32,22 @@ export default class NicknameChangerSettings extends Modal {
               {app.translator.trans('dem13n.admin.nickname.allow_nickname_change')}
             </Switch>
           </div>
+
+      <div className="Form-group">
+        <label>{app.translator.trans('dem13n.admin.nickname.regex')}</label>
+        <input className="FormControl" bidi={this.regex}/>
+      </div>
+
+      <div className="Form-group">
+        <label>{app.translator.trans('dem13n.admin.nickname.min_char')}</label>
+        <input type="number" min="1" max="99" className="FormControl" bidi={this.min}/>
+      </div>
+
+      <div className="Form-group">
+        <label>{app.translator.trans('dem13n.admin.nickname.max_char')}</label>
+        <input type="number" min="2" max="100" className="FormControl" bidi={this.max}/>
+      </div>
+
           <div className="Form-group">
             <Button
               className='Button Button--primary'
@@ -44,10 +63,13 @@ export default class NicknameChangerSettings extends Modal {
 
   onsubmit(e) {
     e.preventDefault();
-    if (this.loading) return;
+    if (this.loading || this.min() > this.max()) return;
     this.loading = true;
     saveSettings({
-      dem13n_nickname_change: this.NicknameChange()
+      dem13n_nickname_change: this.NicknameChange(),
+      dem13n_nickname_regex: this.regex(),
+      dem13n_nickname_min_char: this.min(),
+      dem13n_nickname_max_char: this.max()
     }).then(() => window.location.reload());
   }
 }
