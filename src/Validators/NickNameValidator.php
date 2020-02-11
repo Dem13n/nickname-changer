@@ -7,16 +7,15 @@ use Flarum\Settings\SettingsRepositoryInterface;
 
 class NickNameValidator extends AbstractValidator
 {
-
     protected function getRules()
     {
-
         $settings = app(SettingsRepositoryInterface::class);
+        $unique_nickname = ($settings->get('dem13n_nickname_unique') == 1) ? 'unique:users,nickname' : '';
 
         return [
             'nickname' => [
                 'unique:users,username',
-                'unique:users,nickname',
+                $unique_nickname,
                 'regex:' . $settings->get('dem13n_nickname_regex'),
                 'min:' . $settings->get('dem13n_nickname_min_char'),
                 'max:' . $settings->get('dem13n_nickname_max_char'),
