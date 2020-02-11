@@ -10,7 +10,7 @@ class NickNameValidator extends AbstractValidator
     protected function getRules()
     {
         $settings = app(SettingsRepositoryInterface::class);
-        $unique_nickname = ($settings->get('dem13n_nickname_unique') == 1) ? 'unique:users,nickname' : '';
+        $unique_nickname = ($settings->get('dem13n_nickname_unique') == 0) ? 'unique:users,nickname' : '';
 
         return [
             'nickname' => [

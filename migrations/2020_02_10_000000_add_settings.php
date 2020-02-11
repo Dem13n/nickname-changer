@@ -20,5 +20,9 @@ return [
             $settings->set('dem13n_nickname_max_char', 30);
         }
 
+        if (empty($settings->get('dem13n_nickname_unique'))) {
+            $settings->set('dem13n_nickname_unique', 0);
+        }
+
     },
 ];
